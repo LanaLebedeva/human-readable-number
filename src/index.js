@@ -25,7 +25,7 @@ module.exports = function toReadable(number) {
     let result;
 
     if (number < 10) {
-        return toReadableUnits(number % 10);
+        return toReadableUnits(number);
     }
 
     if (number < 20) {
