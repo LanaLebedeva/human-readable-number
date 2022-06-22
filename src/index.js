@@ -22,21 +22,7 @@ module.exports = function toReadable(number) {
         return result
     }
 
-    let result;
-
-    if (number < 10) {
-        return toReadableUnits(number);
-    }
-
-    if (number < 20) {
-        return toReadableLessTwenty(number);
-    }
-
-    if (number < 100) {
-        return toReadableLessOneHundred(number);
-    }
-
-    if (number < 1000) {
+    function toReadableLessOneThousand(number) {
         let resultHundred = toReadableUnits(parseInt(number.toString()[0])) + ' hundred';
         let tempNumber = number.toString().slice(-2);
         let resultNumber;
@@ -52,6 +38,24 @@ module.exports = function toReadable(number) {
             resultHundred += (' ' + toReadableLessOneHundred(tempNumber));
         }
         return resultHundred;
+    }
+
+    let result;
+
+    if (number < 10) {
+        return toReadableUnits(number);
+    }
+
+    if (number < 20) {
+        return toReadableLessTwenty(number);
+    }
+
+    if (number < 100) {
+        return toReadableLessOneHundred(number);
+    }
+
+    if (number < 1000) {
+        return toReadableLessOneThousand(number);
     }
     return result;
 }
